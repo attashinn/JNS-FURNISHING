@@ -1,1 +1,0 @@
-import{d as e,f as t,p as n,s as r}from"./x-Bp0aNcZN.js";function i(r,i){return e({...r,enabled:!0,suspense:!0,throwOnError:t,placeholderData:void 0},n,i)}var a=r(`chevron-right`,[[`path`,{d:`m9 18 6-6-6-6`,key:`mthhwq`}]]);export{i as n,a as t};

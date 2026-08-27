@@ -1,1 +1,0 @@
-import{n as e}from"./rolldown-runtime-CbXtAM7H.js";import{c as t,g as n,r}from"./createServerFn-7nph1paK.js";var i=e(n(),1);function a(e){let n=r();return i.useCallback(async(...r)=>{try{let n=await e(...r);if(t(n))throw n;return n}catch(e){if(t(e))return e.options._fromLocation=n.stores.location.get(),n.navigate(n.resolveRedirect(e).options);throw e}},[n,e])}export{a as t};
