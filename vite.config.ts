@@ -10,6 +10,11 @@ export default defineConfig({
   nitro: {
     preset: process.env.VERCEL ? "vercel" : (process.env.NITRO_PRESET || "cloudflare-module"),
     minify: false,
+    rollupConfig: {
+      output: {
+        inlineDynamicImports: true,
+      },
+    },
   },
 });
 
