@@ -45,9 +45,11 @@ export const Route = createFileRoute("/shop")({
       { property: "og:description", content: "Explore bespoke curtains, Egyptian cotton bedding, stretch sofa covers, and luxury upholstery fabrics in Bangladesh." },
     ],
   }),
-  loader: ({ context }) => {
-    context.queryClient.ensureQueryData(productsQueryOptions);
-    context.queryClient.ensureQueryData(reviewStatsQueryOptions);
+  loader: async ({ context }) => {
+    await Promise.allSettled([
+      context.queryClient.ensureQueryData(productsQueryOptions),
+      context.queryClient.ensureQueryData(reviewStatsQueryOptions),
+    ]);
   },
   component: Shop,
 });

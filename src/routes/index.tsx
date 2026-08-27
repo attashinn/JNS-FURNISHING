@@ -34,9 +34,11 @@ const reviewStatsQueryOptions = queryOptions({
 });
 
 export const Route = createFileRoute("/")({
-  loader: ({ context }) => {
-    context.queryClient.ensureQueryData(productsQueryOptions);
-    context.queryClient.ensureQueryData(reviewStatsQueryOptions);
+  loader: async ({ context }) => {
+    await Promise.allSettled([
+      context.queryClient.ensureQueryData(productsQueryOptions),
+      context.queryClient.ensureQueryData(reviewStatsQueryOptions),
+    ]);
   },
   component: Index,
 });
