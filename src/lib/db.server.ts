@@ -3,7 +3,7 @@ import { neon } from "@neondatabase/serverless";
 let _sql: any = null;
 let _initPromise: Promise<void> | null = null;
 
-const SEED_PRODUCTS: Array<{
+export const SEED_PRODUCTS: Array<{
   id?: number;
   slug: string;
   name: string;

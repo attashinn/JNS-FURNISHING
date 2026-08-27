@@ -15,26 +15,36 @@ export type ReviewStat = { slug: string; avg: number; count: number };
 export const listReviewsFn = createServerFn({ method: "GET" })
   .validator((data: { slug: string }) => data)
   .handler(async ({ data }) => {
+    try {
+      const { getSql, ensureDb } = await import("./db.server");
+      await ensureDb();
+      const sql = getSql();
+      const rows = (await sql`
+        SELECT id, product_slug, user_name, rating, title, body, created_at
+        FROM reviews WHERE product_slug = ${data.slug}
+        ORDER BY created_at DESC LIMIT 50
+      `) as Review[];
+      return rows ?? [];
+    } catch (err) {
+      console.error("Failed to query reviews:", err);
+      return [];
+    }
+  });
+
+export const listReviewStatsFn = createServerFn({ method: "GET" }).handler(async () => {
+  try {
     const { getSql, ensureDb } = await import("./db.server");
     await ensureDb();
     const sql = getSql();
     const rows = (await sql`
-      SELECT id, product_slug, user_name, rating, title, body, created_at
-      FROM reviews WHERE product_slug = ${data.slug}
-      ORDER BY created_at DESC LIMIT 50
-    `) as Review[];
-    return rows;
-  });
-
-export const listReviewStatsFn = createServerFn({ method: "GET" }).handler(async () => {
-  const { getSql, ensureDb } = await import("./db.server");
-  await ensureDb();
-  const sql = getSql();
-  const rows = (await sql`
-    SELECT product_slug AS slug, AVG(rating)::float AS avg, COUNT(*)::int AS count
-    FROM reviews GROUP BY product_slug
-  `) as ReviewStat[];
-  return rows;
+      SELECT product_slug AS slug, AVG(rating)::float AS avg, COUNT(*)::int AS count
+      FROM reviews GROUP BY product_slug
+    `) as ReviewStat[];
+    return rows ?? [];
+  } catch (err) {
+    console.error("Failed to query review stats:", err);
+    return [];
+  }
 });
 
 export const submitReviewFn = createServerFn({ method: "POST" })
