@@ -1,0 +1,168 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * JNS Furnishing Luxury Design System
+ * Palette: Cream (#F8F4EE), Warm Beige (#EADCC8), Gold (#D4A25A), Deep Forest Green (#2E473A), Charcoal (#1A1A1A), Soft White (#FAF9F6)
+ * Typography: Playfair Display / Cormorant Garamond (Editorial Serif), Manrope / Inter (Modern Sans)
+ */
+
+@theme inline {
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-4xl: 2.5rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* JNS Brand Custom Tokens */
+  --color-jns-cream: #F8F4EE;
+  --color-jns-beige: #EADCC8;
+  --color-jns-gold: #D4A25A;
+  --color-jns-gold-dark: #B8853D;
+  --color-jns-gold-light: #F2D8A7;
+  --color-jns-green: #2E473A;
+  --color-jns-green-dark: #1E3127;
+  --color-jns-green-light: #415F4E;
+  --color-jns-charcoal: #1A1A1A;
+  --color-jns-softwhite: #FAF9F6;
+  --color-jns-border: #E8E2D8;
+
+  --font-serif: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-brand: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: #FAF9F6;
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #2E473A;
+  --primary-foreground: #FAF9F6;
+  --secondary: #F4EFE6;
+  --secondary-foreground: #1A1A1A;
+  --muted: #EFEBE4;
+  --muted-foreground: #6B6862;
+  --accent: #D4A25A;
+  --accent-foreground: #1A1A1A;
+  --destructive: #A33B3B;
+  --destructive-foreground: #FAF9F6;
+  --border: #E8E2D8;
+  --input: #E2DCD0;
+  --ring: #D4A25A;
+}
+
+.dark {
+  --background: #141715;
+  --foreground: #FAF9F6;
+  --card: #1D211F;
+  --card-foreground: #FAF9F6;
+  --popover: #1D211F;
+  --popover-foreground: #FAF9F6;
+  --primary: #D4A25A;
+  --primary-foreground: #1A1A1A;
+  --secondary: #272E2A;
+  --secondary-foreground: #FAF9F6;
+  --muted: #242B27;
+  --muted-foreground: #A1A8A3;
+  --accent: #D4A25A;
+  --accent-foreground: #1A1A1A;
+  --destructive: #C94C4C;
+  --destructive-foreground: #FAF9F6;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #D4A25A;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, .font-serif-heading {
+    font-family: var(--font-serif);
+    letter-spacing: -0.015em;
+  }
+}
+
+/* Custom JNS Utility Classes */
+.arch-card {
+  border-radius: 120px 120px 12px 12px;
+  overflow: hidden;
+}
+
+.jns-gold-shimmer {
+  background: linear-gradient(135deg, #D4A25A 0%, #F5DEB3 50%, #B8853D 100%);
+}
+
+.jns-gold-text {
+  background: linear-gradient(135deg, #E6C186 0%, #D4A25A 50%, #B8853D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.jns-subtle-shadow {
+  box-shadow: 0 10px 30px -10px rgba(46, 71, 58, 0.08);
+}
+
+.jns-elevation-hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jns-elevation-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(26, 26, 26, 0.12);
+}
+
+/* Hide scrollbar for clean carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
